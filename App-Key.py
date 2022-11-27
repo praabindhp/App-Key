@@ -1,7 +1,7 @@
 # Initializing The Libraries
 import webbrowser
 import keyboard
-import msvcrt
+from msvcrt import getch
 from sshkeyboard import listen_keyboard
 
 def set_app():
@@ -25,15 +25,16 @@ def set_app():
     return final_key
             
 def start_app():
-    print("Enter Value : ")
-    char = msvcrt.getch()
-    print(char)
-    if 'g' in char:
-        webbrowser.open('https://www.google.com/')
-    elif char == "b'f'":
-        webbrowser.open('https://www.facebook.com/')
-    elif char == "b'y'":
-        webbrowser.open('https://www.youtube.com/')
+    pass
+    # print("Enter Value : ")
+    # char = msvcrt.getch()
+    # print(char)
+    # if 'g' in char:
+    #     webbrowser.open('https://www.google.com/')
+    # elif char == "b'f'":
+    #     webbrowser.open('https://www.facebook.com/')
+    # elif char == "b'y'":
+    #     webbrowser.open('https://www.youtube.com/')
 
 def stop_app():
     pass
@@ -55,8 +56,14 @@ if __name__ == "__main__":
             continue
             
         elif choice == 2:
-            start_app()
-            continue
+            while True:
+                key = ord(getch())
+                if key == 27: #ESC
+                    break
+                elif key == 13: #Enter
+                    print("You pressed key ENTER")
+                    start_app()
+                    continue
             
         else:
             exit()
