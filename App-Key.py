@@ -1,6 +1,6 @@
 # Initializing The Libraries
 import webbrowser
-import keyboard
+# import keyboard
 from msvcrt import getch
 from sshkeyboard import listen_keyboard
 
@@ -8,15 +8,17 @@ def set_app():
     print("\nSet The App-Key")
     print("---------------")
     print('''The Hotkey Is : "Space"''')
-    print('''Format : Hotkey + "Your Text"''')
     print('Leave Key-Text Empty To Exit')
     
     app_key = {}
     while True:
-        k = input("\nEnter Key-Text : ")
+        k = input("\nEnter App-Key : ")
         if k == '':
             print('App-Key Set Successfully :)')
             break
+        
+        key = ord(k)
+        print(key)
         url = input("Enter URL : ")
         app_key[k] = url
         global final_key
@@ -25,16 +27,18 @@ def set_app():
     return final_key
             
 def start_app():
-    pass
-    # print("Enter Value : ")
-    # char = msvcrt.getch()
-    # print(char)
-    # if 'g' in char:
-    #     webbrowser.open('https://www.google.com/')
-    # elif char == "b'f'":
-    #     webbrowser.open('https://www.facebook.com/')
-    # elif char == "b'y'":
-    #     webbrowser.open('https://www.youtube.com/')
+    key = ord(getch())
+    print(key)
+    if key == 27: # ESC
+        print("You Pressed ESC")
+    elif key == 13: # Enter
+        print("You Pressed ENTER")
+    elif key == 103: # g
+        webbrowser.open('https://www.google.com/')
+    elif key == 102: # f
+        webbrowser.open('https://www.facebook.com/')
+    elif key == 121: # y
+        webbrowser.open('https://www.youtube.com/')
 
 def stop_app():
     pass
@@ -56,17 +60,19 @@ if __name__ == "__main__":
             continue
             
         elif choice == 2:
+            print('''Format : Hotkey [Space] + "Your Key"''')
             while True:
                 key = ord(getch())
-                if key == 27: #ESC
-                    break
-                elif key == 13: #Enter
-                    print("You pressed key ENTER")
+                print(key)
+                if key == 32: # Space
                     start_app()
-                    continue
+                elif key == 27: # ESC
+                    break
             
         else:
             exit()
+
+# Noted Down ------------------------------------------
 
 #     if keyboard.is_pressed(hk + '+ g'): 
 #         webbrowser.open('https://www.google.com/')
@@ -76,3 +82,13 @@ if __name__ == "__main__":
         
 #     if keyboard.is_pressed(hk + '+ f'):
 #         webbrowser.open('https://www.facebook.com/')
+
+# print("Enter Value : ")
+# char = msvcrt.getch()
+# print(char)
+# if 'g' in char:
+#     webbrowser.open('https://www.google.com/')
+# elif char == "b'f'":
+#     webbrowser.open('https://www.facebook.com/')
+# elif char == "b'y'":
+#     webbrowser.open('https://www.youtube.com/')
