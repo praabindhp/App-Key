@@ -20,25 +20,24 @@ def set_app():
         key = ord(k)
         print(key)
         url = input("Enter URL : ")
-        app_key[k] = url
+        app_key[key] = url
         global final_key
         final_key = app_key
         
     return final_key
             
 def start_app():
+    print(final_key)
     key = ord(getch())
     print(key)
+    value = final_key.get(key)
+    print("Key By Value: ",value)
+    webbrowser.open(value)
+    
     if key == 27: # ESC
         print("You Pressed ESC")
     elif key == 13: # Enter
         print("You Pressed ENTER")
-    elif key == 103: # g
-        webbrowser.open('https://www.google.com/')
-    elif key == 102: # f
-        webbrowser.open('https://www.facebook.com/')
-    elif key == 121: # y
-        webbrowser.open('https://www.youtube.com/')
 
 def stop_app():
     pass
@@ -91,4 +90,9 @@ if __name__ == "__main__":
 # elif char == "b'f'":
 #     webbrowser.open('https://www.facebook.com/')
 # elif char == "b'y'":
+#     webbrowser.open('https://www.youtube.com/')
+
+# elif key == 102: # f
+#     webbrowser.open('https://www.facebook.com/')
+# elif key == 121: # y
 #     webbrowser.open('https://www.youtube.com/')
